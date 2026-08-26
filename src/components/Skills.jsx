@@ -1,11 +1,17 @@
 import { WavyUnderlineCream, TapeStripDark } from "./Illustrations";
 
 const SKILLS = [
-  { name: "HTML & CSS", level: 92 },
-  { name: "JavaScript", level: 85 },
-  { name: "React", level: 82 },
-  { name: "UI / UX Design", level: 74 },
-  { name: "Git & Deployment", level: 78 },
+  { name: "React", level: 88 },
+  { name: "Vue.js", level: 76 },
+  { name: "Flutter", level: 80 },
+  { name: "Laravel", level: 78 },
+  { name: "Node.js", level: 75 },
+  { name: "Python", level: 82 },
+  { name: "Java", level: 70 },
+  { name: "MySQL", level: 80 },
+  { name: "PostgreSQL", level: 74 },
+  { name: "Docker", level: 68 },
+  { name: "Git", level: 85 },
 ];
 
 export default function Skills() {
@@ -19,7 +25,7 @@ export default function Skills() {
           <WavyUnderlineCream className="w-24 h-2.5 mt-1" />
         </h2>
 
-        <ul className="mt-8 space-y-6 max-w-xl">
+        <ul className="mt-8 grid sm:grid-cols-2 gap-x-10 gap-y-6">
           {SKILLS.map((s) => (
             <li key={s.name}>
               <div className="flex items-center justify-between text-xs uppercase tracking-wide font-bold">

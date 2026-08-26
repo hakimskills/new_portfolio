@@ -2,8 +2,8 @@ import { WavyUnderline, StarBurstOutline } from "./Illustrations";
 
 const PROJECTS = [
   {
-    title: "ScholarDesk",
-    category: "Web App",
+    title: "HealthLink",
+    category: "Mobile App",
     image: "/projects/project-1.jpg",
     tall: false,
   },
@@ -14,14 +14,14 @@ const PROJECTS = [
     tall: false,
   },
   {
-    title: "TaskFlow",
-    category: "Mobile App",
+    title: "ScholarDesk",
+    category: "dosktop App",
     image: "/projects/project-3.jpg",
     tall: false,
   },
   {
-    title: "Pulse Dashboard",
-    category: "Dashboard",
+    title: "Rantlhub",
+    category: "Mobile App",
     image: "/projects/project-4.jpg",
     tall: false,
   },

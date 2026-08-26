@@ -265,4 +265,22 @@ export function RiotHelm({ className = "" }) {
       <path d="M32 20 L32 44 M22 30 L42 30" strokeWidth="2.5" />
     </svg>
   );
+
+}
+export function CurlySwirlArrow({ className = "" }) {
+  return (
+    <svg viewBox="0 0 120 110" className={className} fill="none" stroke="#1E1B14" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M95 92 C 112 92, 112 62, 92 62 C 76 62, 70 78, 82 86 C 96 95, 108 82, 98 68" />
+      <path d="M55 45 C 42 32, 30 30, 20 34" />
+      <path d="M35 20 L18 33 L30 50" />
+    </svg>
+  );
+}
+
+export function ArrowTick({ className = "" }) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" stroke="#FBF7EA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 5 L14 10 L6 15" />
+    </svg>
+  );
 }
