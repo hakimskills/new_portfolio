@@ -11,7 +11,7 @@ export default function App() {
     <div className="min-h-screen bg-cream text-ink font-mono selection:bg-clay">
       <Nav />
       <main>
-        
+        <Hero />
         <Projects />
         <About />
         <Skills />
