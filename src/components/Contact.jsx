@@ -36,12 +36,7 @@ export default function Contact() {
             </li>
             <li className="flex items-center gap-3">
               <span aria-hidden>&#128247;</span>
-              <a
-                href="https://instagram.com/hakim_rebbouh"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-clay"
-              >
+              <a href="https://instagram.com/hakim_rebbouh" target="_blank" rel="noreferrer" className="hover:text-clay">
                 @hakim_rebbouh
               </a>
             </li>
@@ -49,12 +44,14 @@ export default function Contact() {
 
           <SmileyStamp className="w-16 h-16 absolute top-8 right-8" />
 
-          <a
-            href="mailto:abdelhakim.rebbouh@univ-constantine2.dz"
-            className="mt-10 flex items-center justify-between bg-ink text-cream text-xs uppercase tracking-wide font-bold px-5 py-4 rounded-sm hover:bg-clay transition-colors"
-          >
-            Say hello <span aria-hidden>&rarr;</span>
-          </a>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <a href="mailto:abdelhakim.rebbouh@univ-constantine2.dz" className="flex-1 flex items-center justify-between bg-ink text-cream text-xs uppercase tracking-wide font-bold px-5 py-4 rounded-sm hover:bg-clay transition-colors">
+              Say hello <span aria-hidden>&rarr;</span>
+            </a>
+            <a href="/resume.pdf" download className="flex-1 flex items-center justify-between border border-ink/25 text-ink text-xs uppercase tracking-wide font-bold px-5 py-4 rounded-sm hover:border-clay hover:text-clay transition-colors">
+              Download resume <span aria-hidden>&darr;</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
