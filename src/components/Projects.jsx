@@ -8,6 +8,7 @@ const PROJECTS = [
     image: "/projects/project-1.jpg",
     video: "/projects/healthlink-teaser.mp4",
     github: "https://github.com/hakimskills/health_link",
+    stack: ["Flutter", "Laravel", "MySQL"],
     tall: false,
   },
   {
@@ -15,6 +16,7 @@ const PROJECTS = [
     category: "Landing Page",
     image: "/projects/project-2.jpg",
     github: "https://github.com/hakimskills/riot_website_clone",
+    stack: ["React", "HTML/CSS"],
     tall: false,
   },
   {
@@ -22,6 +24,7 @@ const PROJECTS = [
     category: "Desktop App",
     image: "/projects/project-3.jpg",
     github: "https://github.com/hakimskills/ScholarDesk",
+    stack: ["Java", "PostgreSQL"],
     tall: false,
   },
   {
@@ -29,6 +32,7 @@ const PROJECTS = [
     category: "Mobile App",
     image: "/projects/project-4.jpg",
     github: "https://github.com/hakimskills/rentalhub",
+    stack: ["Flutter", "Node.js", "MySQL"],
     tall: false,
   },
 ];
@@ -136,7 +140,18 @@ export default function Projects() {
               <StarBurstOutline className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <p className="text-[11px] uppercase tracking-wide text-inkSoft mt-1">{p.category}</p>
-          </article>
+            {p.stack && (
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {p.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[9px] uppercase tracking-wide font-bold text-inkSoft border border-ink/15 rounded-full px-2 py-0.5"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}          </article>
         ))}
       </div>
 
