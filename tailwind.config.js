@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
@@ -13,6 +14,9 @@ export default {
         clayDark: "#B12E18",
         ink: "#1E1B14",
         inkSoft: "#4A4432",
+        night: "#18140E",
+        nightSurface: "#221D15",
+        nightSoft: "#B8AF95",
       },
       fontFamily: {
         display: ["'Fraunces'", "serif"],
