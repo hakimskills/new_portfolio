@@ -16,10 +16,10 @@ export default function About() {
               About me
               <WavyUnderlineCream className="w-24 h-2.5 mt-1" />
             </h2>
-            <p className="mt-5 text-[13px] leading-relaxed text-ink/90">
-              I&rsquo;m Abdelhakim Rebbouh, a web developer and computer
-              science student who likes turning messy problems into clean,
-              working interfaces &mdash; one component at a time.
+             <p className="mt-5 text-[13px] leading-relaxed text-ink/90">
+              I&rsquo;m Abdelhakim Rebbouh, a full-stack developer with a
+              focus on web and mobile who likes turning messy problems into
+              clean, working products &mdash; one component at a time.
             </p>
             <a
               href="#work"

@@ -17,9 +17,10 @@ export default function Hero() {
               <br />
               that work.
             </h1>
-            <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-inkSoft">
-              A web developer crafting clean interfaces, small details and
-              fast, working products for people to use.
+                                  <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-inkSoft">
+              A full-stack developer with a focus on web and mobile &mdash;
+              building clean interfaces, solid backends, and fast, working
+              products for people to use.
             </p>
             <div className="mt-7 flex items-center gap-3">
               <a href="#contact" className="inline-block bg-clay text-cream text-xs tracking-wide uppercase font-bold px-6 py-3 rounded-sm shadow-pin hover:bg-clayDark transition-colors">

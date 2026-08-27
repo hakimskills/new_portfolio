@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { WavyUnderline, StarBurstOutline } from "./Illustrations";
 
 const PROJECTS = [
@@ -5,6 +6,7 @@ const PROJECTS = [
     title: "HealthLink",
     category: "Mobile App",
     image: "/projects/project-1.jpg",
+    video: "/projects/healthlink-teaser.mp4",
     github: "https://github.com/hakimskills/health_link",
     tall: false,
   },
@@ -39,7 +41,39 @@ function GithubIcon({ className = "" }) {
   );
 }
 
+function PlayIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="11" fillOpacity="0.9" />
+      <path d="M9.5 7.5v9l8-4.5-8-4.5Z" fill="#D6381F" />
+    </svg>
+  );
+}
+
+function CloseIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+      <path d="M5 5 L19 19 M19 5 L5 19" />
+    </svg>
+  );
+}
+
 export default function Projects() {
+  const [activeVideo, setActiveVideo] = useState(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    function onKey(e) {
+      if (e.key === "Escape") setActiveVideo(null);
+    }
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [activeVideo]);
+
   return (
     <section id="work" className="max-w-6xl mx-auto px-6 py-16">
       <div className="flex items-center justify-between border-b border-ink/15 pb-4 mb-10">
@@ -63,10 +97,39 @@ export default function Projects() {
                 loading="lazy"
               />
 
-              <a href={p.github} target="_blank" rel="noreferrer" aria-label={`View ${p.title} source on GitHub`} className="absolute inset-3 rounded-[2px] bg-ink/0 group-hover:bg-ink/70 flex items-center justify-center gap-2 text-cream opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <GithubIcon className="w-6 h-6" />
-                <span className="text-xs uppercase tracking-wide font-bold">View on GitHub</span>
-              </a>
+              {p.video && (
+                <video
+                  src={p.video}
+                  poster={p.image}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-3 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] object-cover rounded-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              )}
+
+              {p.video && (
+                <button
+                  type="button"
+                  onClick={() => setActiveVideo(p.video)}
+                  aria-label={`Play ${p.title} video in full screen`}
+                  className="absolute inset-3 rounded-[2px] flex items-center justify-center"
+                >
+                  <PlayIcon className="w-12 h-12 text-cream opacity-90 group-hover:opacity-100 transition-opacity duration-300 drop-shadow" />
+                </button>
+              )}
+
+              {p.video ? (
+                <a href={p.github} target="_blank" rel="noreferrer" aria-label={`View ${p.title} source on GitHub`} className="absolute bottom-5 right-5 w-9 h-9 rounded-full bg-ink/70 flex items-center justify-center text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <GithubIcon className="w-4 h-4" />
+                </a>
+              ) : (
+                <a href={p.github} target="_blank" rel="noreferrer" aria-label={`View ${p.title} source on GitHub`} className="absolute inset-3 rounded-[2px] bg-ink/0 group-hover:bg-ink/40 flex items-center justify-center gap-2 text-cream opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <GithubIcon className="w-6 h-6" />
+                  <span className="text-xs uppercase tracking-wide font-bold">View on GitHub</span>
+                </a>
+              )}
             </div>
             <div className="mt-3 flex items-center justify-between">
               <h3 className="font-display text-lg font-semibold text-ink">{p.title}</h3>
@@ -76,6 +139,31 @@ export default function Projects() {
           </article>
         ))}
       </div>
+
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[999] bg-ink/90 flex items-center justify-center p-4 sm:p-8"
+          onClick={() => setActiveVideo(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveVideo(null)}
+            aria-label="Close video"
+            className="absolute top-5 right-5 sm:top-8 sm:right-8 w-10 h-10 rounded-full bg-cream/10 hover:bg-cream/20 text-cream flex items-center justify-center transition-colors"
+          >
+            <CloseIcon className="w-5 h-5" />
+          </button>
+
+          <video
+            src={activeVideo}
+            controls
+            autoPlay
+            playsInline
+            className="max-w-4xl w-full max-h-[85vh] rounded-sm shadow-pin"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }
