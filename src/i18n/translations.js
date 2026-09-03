@@ -18,10 +18,60 @@ export const translations = {
     projects: {
       heading: "Projects",
       viewGithub: "View on GitHub",
+      readMore: "Read more",
+      featuresLabel: "Key features",
       categories: {
         "Mobile App": "Mobile App",
         "Landing Page": "Landing Page",
         "Desktop App": "Desktop App",
+        "Chat App": "Chat App",
+      },
+      details: {
+        HealthLink: {
+          description:
+            "A healthcare procurement platform for Algeria, built across web and mobile. Developed the Laravel backend and REST APIs powering both a Flutter mobile app and a React web frontend, with a focus on an intuitive UI for users with varying digital literacy levels.",
+          features: [
+            "Laravel backend & REST APIs for web + mobile",
+            "Flutter mobile app frontend",
+            "Pharmacy inventory management",
+            "Supplier ratings & digital sales tools",
+            "Collaborated on the React frontend, ensuring API compatibility",
+            "Built iteratively in Agile Scrum (sprint planning & stand-ups)",
+          ],
+        },
+        "Chat app": {
+          description:
+            "A real-time chat application built with Flutter and Laravel, using WebSockets for instant messaging between users.",
+          features: [
+            "Real-time messaging via WebSockets",
+            "Flutter mobile client",
+            "Laravel backend & authentication",
+            "Message history & delivery status",
+          ],
+        },
+        ScholarDesk: {
+          description:
+            "A Windows desktop ERP built with Python and PySide6 (Qt) for managing private school operations — student records, classes, payments, attendance, and SMS notifications — with a fully RTL Arabic interface and a custom-built modern UI design system.",
+          features: [
+            "Student records & class management",
+            "Payments & attendance tracking",
+            "SMS notifications",
+            "Fully RTL Arabic interface",
+            "Custom-built modern UI design system",
+            "Built with Python & PySide6 (Qt)",
+          ],
+        },
+        Rantlhub: {
+          description:
+            "A mobile rental marketplace app connecting property owners with renters — browse listings, message owners, and manage bookings.",
+          features: [
+            "Property listings with photos & filters",
+            "In-app messaging between renter & owner",
+            "Booking & availability calendar",
+            "User authentication & profiles",
+            "Laravel REST API backend",
+          ],
+        },
       },
     },
     about: {
@@ -78,10 +128,60 @@ export const translations = {
     projects: {
       heading: "المشاريع",
       viewGithub: "عرض على GitHub",
+      readMore: "اقرأ المزيد",
+      featuresLabel: "أبرز الميزات",
       categories: {
         "Mobile App": "تطبيق جوال",
         "Landing Page": "صفحة هبوط",
         "Desktop App": "تطبيق سطح مكتب",
+        "Chat App": "تطبيق محادثة",
+      },
+      details: {
+        HealthLink: {
+          description:
+            "منصة لشراء المستلزمات الصحية في الجزائر عبر الويب والجوال. طوّرت الواجهة الخلفية وواجهات REST API باستخدام Laravel لتشغيل تطبيق Flutter للجوال وواجهة React للويب، مع التركيز على تصميم بديهي يناسب مستخدمين بمستويات مختلفة من الإلمام الرقمي.",
+          features: [
+            "واجهة خلفية وREST API بلغة Laravel لدعم الويب والجوال",
+            "واجهة تطبيق الجوال بلغة Flutter",
+            "إدارة مخزون الصيدليات",
+            "تقييمات الموردين وأدوات بيع رقمية",
+            "التعاون في واجهة React وضمان توافق الـ API",
+            "تطوير تكراري ضمن منهجية Agile Scrum (تخطيط السبرنت والاجتماعات اليومية)",
+          ],
+        },
+        "Chat app": {
+          description:
+            "تطبيق محادثة فورية مبني بـ Flutter وLaravel، يستخدم WebSockets للمراسلة الفورية بين المستخدمين.",
+          features: [
+            "مراسلة فورية عبر WebSockets",
+            "تطبيق جوال بـ Flutter",
+            "واجهة خلفية ومصادقة بـ Laravel",
+            "سجل الرسائل وحالة التسليم",
+          ],
+        },
+        ScholarDesk: {
+          description:
+            "نظام تخطيط موارد (ERP) لسطح المكتب لإدارة المدارس الخاصة، مبني بلغة Python ومكتبة PySide6 (Qt) — يدير سجلات الطلاب، والفصول، والمدفوعات، والحضور، وإشعارات الرسائل النصية (SMS) — بواجهة عربية كاملة باتجاه من اليمين لليسار (RTL) ونظام تصميم واجهة مستخدم حديث مصمم بالكامل من الصفر.",
+          features: [
+            "إدارة سجلات الطلاب والفصول",
+            "تتبع المدفوعات والحضور",
+            "إشعارات الرسائل النصية (SMS)",
+            "واجهة عربية كاملة باتجاه RTL",
+            "نظام تصميم واجهة مستخدم حديث ومخصص",
+            "مبني بلغة Python ومكتبة PySide6 (Qt)",
+          ],
+        },
+        Rantlhub: {
+          description:
+            "تطبيق جوال لسوق الإيجارات يربط الملّاك بالمستأجرين — تصفح الإعلانات وتواصل مع الملاك وأدر حجوزاتك.",
+          features: [
+            "عرض العقارات مع صور وفلاتر",
+            "محادثة داخل التطبيق بين المستأجر والمالك",
+            "تقويم الحجز والتوفر",
+            "تسجيل الدخول والملفات الشخصية",
+            "واجهة خلفية REST بـ Laravel",
+          ],
+        },
       },
     },
     about: {

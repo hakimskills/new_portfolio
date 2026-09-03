@@ -9,15 +9,15 @@ const PROJECTS = [
     image: "/projects/project-1.jpg",
     video: "/projects/healthlink-teaser.mp4",
     github: "https://github.com/hakimskills/health_link",
-    stack: ["Flutter", "Laravel", "MySQL"],
+    stack: ["Laravel", "MySQL", "Flutter", "REST API", "React"],
     tall: false,
   },
   {
-    title: "Soul Fighter",
-    category: "Landing Page",
+    title: "Chat app",
+    category: "Chat App",
     image: "/projects/project-2.jpg",
     github: "https://github.com/hakimskills/riot_website_clone",
-    stack: ["React", "HTML/CSS"],
+    stack: ["Flutter", "Laravel", "WebSockets"],
     tall: false,
   },
   {
@@ -25,7 +25,7 @@ const PROJECTS = [
     category: "Desktop App",
     image: "/projects/project-3.jpg",
     github: "https://github.com/hakimskills/ScholarDesk",
-    stack: ["Java", "PostgreSQL"],
+    stack: ["Python", "PySide6 (Qt)"],
     tall: false,
   },
   {
@@ -33,7 +33,7 @@ const PROJECTS = [
     category: "Mobile App",
     image: "/projects/project-4.jpg",
     github: "https://github.com/hakimskills/rentalhub",
-    stack: ["Flutter", "Node.js", "MySQL"],
+    stack: ["Flutter", "Laravel", "MySQL"],
     tall: false,
   },
 ];
@@ -63,14 +63,26 @@ function CloseIcon({ className = "" }) {
   );
 }
 
+function PlusIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
 export default function Projects() {
   const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState(null);
+  const [activeDetails, setActiveDetails] = useState(null);
 
   useEffect(() => {
-    if (!activeVideo) return;
+    if (!activeVideo && !activeDetails) return;
     function onKey(e) {
-      if (e.key === "Escape") setActiveVideo(null);
+      if (e.key === "Escape") {
+        setActiveVideo(null);
+        setActiveDetails(null);
+      }
     }
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -78,7 +90,7 @@ export default function Projects() {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [activeVideo]);
+  }, [activeVideo, activeDetails]);
 
   return (
     <section id="work" className="max-w-6xl mx-auto px-6 py-16">
@@ -139,7 +151,17 @@ export default function Projects() {
             </div>
             <div className="mt-3 flex items-center justify-between">
               <h3 className="font-display text-lg font-semibold text-ink dark:text-cream">{p.title}</h3>
-              <StarBurstOutline className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex items-center gap-2">
+                <StarBurstOutline className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <button
+                  type="button"
+                  onClick={() => setActiveDetails(p)}
+                  aria-label={`${t.projects.readMore}: ${p.title}`}
+                  className="w-7 h-7 rounded-full border border-ink/25 dark:border-cream/25 flex items-center justify-center text-ink dark:text-cream hover:border-clay hover:text-clay transition-colors"
+                >
+                  <PlusIcon className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
             <p className="text-[11px] uppercase tracking-wide text-inkSoft dark:text-nightSoft mt-1">{t.projects.categories[p.category] || p.category}</p>
             {p.stack && (
@@ -180,6 +202,91 @@ export default function Projects() {
             className="max-w-4xl w-full max-h-[85vh] rounded-sm shadow-pin"
             onClick={(e) => e.stopPropagation()}
           />
+        </div>
+      )}
+
+      {activeDetails && (
+        <div
+          className="fixed inset-0 z-[999] bg-ink/80 flex items-center justify-center p-4 sm:p-8"
+          onClick={() => setActiveDetails(null)}
+        >
+          <div
+            className="relative max-w-lg w-full max-h-[85vh] overflow-y-auto bg-card dark:bg-nightSurface rounded-sm shadow-pin px-7 sm:px-9 py-9"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActiveDetails(null)}
+              aria-label="Close"
+              className="absolute top-5 right-5 rtl:right-auto rtl:left-5 w-9 h-9 rounded-full border border-ink/20 dark:border-cream/20 flex items-center justify-center text-ink dark:text-cream hover:border-clay hover:text-clay transition-colors"
+            >
+              <CloseIcon className="w-4 h-4" />
+            </button>
+
+            <p className="text-[11px] uppercase tracking-wide font-bold text-clay pr-12 rtl:pr-0 rtl:pl-12">
+              {t.projects.categories[activeDetails.category] || activeDetails.category}
+            </p>
+            <h3 className="font-display text-2xl font-semibold text-ink dark:text-cream mt-1">
+              {activeDetails.title}
+            </h3>
+
+            {t.projects.details[activeDetails.title] && (
+              <>
+                <p className="mt-4 text-[13px] leading-relaxed text-inkSoft dark:text-nightSoft">
+                  {t.projects.details[activeDetails.title].description}
+                </p>
+
+                <p className="mt-6 text-[11px] uppercase tracking-wide font-bold text-ink dark:text-cream">
+                  {t.projects.featuresLabel}
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {t.projects.details[activeDetails.title].features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-[13px] leading-relaxed text-inkSoft dark:text-nightSoft">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-clay shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {activeDetails.stack && (
+              <div className="mt-6 flex flex-wrap gap-1.5">
+                {activeDetails.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[9px] uppercase tracking-wide font-bold text-inkSoft dark:text-nightSoft border border-ink/15 dark:border-cream/15 rounded-full px-2 py-0.5"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-7 flex gap-3">
+              <a
+                href={activeDetails.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-ink dark:bg-cream text-cream dark:text-night text-xs uppercase tracking-wide font-bold px-4 py-3 rounded-sm hover:bg-clay dark:hover:bg-clay dark:hover:text-cream transition-colors"
+              >
+                <GithubIcon className="w-4 h-4" />
+                {t.projects.viewGithub}
+              </a>
+              {activeDetails.video && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveVideo(activeDetails.video);
+                    setActiveDetails(null);
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 border border-ink/25 dark:border-cream/25 text-ink dark:text-cream text-xs uppercase tracking-wide font-bold px-4 py-3 rounded-sm hover:border-clay hover:text-clay transition-colors"
+                >
+                  <PlayIcon className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </section>
