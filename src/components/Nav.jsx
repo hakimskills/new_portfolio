@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
-
-const LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Education", href: "#education" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Nav() {
+  const { t } = useLanguage();
+  const LINKS = [
+    { label: t.nav.work, href: "#work" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.education, href: "#education" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
+
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeId, setActiveId] = useState(LINKS[0].href.slice(1));
+  const [activeId, setActiveId] = useState("work");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -21,7 +24,8 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    const sections = LINKS.map((l) => document.getElementById(l.href.slice(1))).filter(Boolean);
+    const ids = ["work", "about", "education", "skills", "contact"];
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
@@ -63,11 +67,13 @@ export default function Nav() {
           })}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 
         <div className="md:hidden flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
           <button className="w-10 h-10 rounded-full bg-clay text-cream flex items-center justify-center" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             <span className="sr-only">Menu</span>

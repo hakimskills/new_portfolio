@@ -1,6 +1,9 @@
 import { DotCluster, WavyUnderlineCream } from "./Illustrations";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="relative max-w-6xl mx-auto px-6 py-10">
       <div className="relative overflow-hidden rounded-sm">
@@ -13,19 +16,14 @@ export default function About() {
         <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center px-6 sm:px-10 py-14">
           <div className="max-w-md">
             <h2 className="font-display text-2xl font-semibold text-ink">
-              About me
+              {t.about.heading}
               <WavyUnderlineCream className="w-24 h-2.5 mt-1" />
             </h2>
-             <p className="mt-5 text-[13px] leading-relaxed text-ink/90">
-              I&rsquo;m Abdelhakim Rebbouh, a full-stack developer with a
-              focus on web and mobile who likes turning messy problems into
-              clean, working products &mdash; one component at a time.
+            <p className="mt-5 text-[13px] leading-relaxed text-ink/90">
+              {t.about.bio}
             </p>
-            <a
-              href="#work"
-              className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-wide font-bold text-ink border-b-2 border-ink hover:text-clay hover:border-clay transition-colors"
-            >
-              More about me <span aria-hidden>&rarr;</span>
+            <a href="#work" className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-wide font-bold text-ink border-b-2 border-ink hover:text-clay hover:border-clay transition-colors">
+              {t.about.more} <span aria-hidden>&rarr;</span>
             </a>
           </div>
 

@@ -1,6 +1,9 @@
 import { BlobYellow, SquiggleArrow, CurlyLine } from "./Illustrations";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="top" className="relative max-w-6xl mx-auto px-6 pt-6 pb-20 md:pt-10 md:pb-28">
       <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -11,20 +14,18 @@ export default function Hero() {
           </div>
           <div className="pt-14 pb-10 px-4 md:px-6">
             <h1 className="font-display text-5xl sm:text-6xl leading-[1.05] font-semibold text-ink">
-              I build
+              {t.hero.line1}
               <br />
-              <span className="text-clay">experiences</span>
+              <span className="text-clay">{t.hero.highlight}</span>
               <br />
-              that work.
+              {t.hero.line2}
             </h1>
-                                  <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-inkSoft">
-              A full-stack developer with a focus on web and mobile &mdash;
-              building clean interfaces, solid backends, and fast, working
-              products for people to use.
+            <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-inkSoft">
+              {t.hero.sub}
             </p>
             <div className="mt-7 flex items-center gap-3">
               <a href="#contact" className="inline-block bg-clay text-cream text-xs tracking-wide uppercase font-bold px-6 py-3 rounded-sm shadow-pin hover:bg-clayDark transition-colors">
-                Let&rsquo;s build something
+                {t.hero.cta}
               </a>
               <SquiggleArrow className="w-16 h-10 hidden sm:block" />
             </div>

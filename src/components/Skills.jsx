@@ -1,4 +1,5 @@
 import { WavyUnderlineCream, TapeStripDark } from "./Illustrations";
+import { useLanguage } from "../context/LanguageContext";
 
 const SKILLS = [
   { name: "React", level: 88 },
@@ -15,13 +16,15 @@ const SKILLS = [
 ];
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section id="skills" className="max-w-6xl mx-auto px-6 py-6">
       <div className="relative bg-clay text-cream px-8 sm:px-12 py-12 rounded-sm shadow-pin overflow-hidden">
         <TapeStripDark className="w-14 h-16 absolute top-6 right-8 opacity-90 hidden sm:block" />
 
         <h2 className="font-display text-2xl font-semibold">
-          Skills
+          {t.skills.heading}
           <WavyUnderlineCream className="w-24 h-2.5 mt-1" />
         </h2>
 
