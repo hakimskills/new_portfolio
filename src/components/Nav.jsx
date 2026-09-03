@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { label: "Work", href: "#work" },
@@ -38,17 +39,19 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
+  const headerClass = "sticky top-0 z-50 transition-colors duration-300 " + (scrolled ? "bg-cream/95 dark:bg-night/90 backdrop-blur-sm border-b border-ink/10 dark:border-cream/10" : "bg-transparent");
+
   return (
-    <header className={`sticky top-0 z-50 transition-colors duration-300 ${scrolled ? "bg-cream/95 backdrop-blur-sm border-b border-ink/10" : "bg-transparent"}`}>
+    <header className={headerClass}>
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-5">
-        <a href="#top" className="font-display text-2xl font-semibold tracking-tight text-ink">
+        <a href="#top" className="font-display text-2xl font-semibold tracking-tight text-ink dark:text-cream">
           A<span className="text-clay">R.</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-9 text-sm tracking-wide">
           {LINKS.map((l) => {
             const isActive = activeId === l.href.slice(1);
-            const linkClass = "uppercase relative pb-1 hover:text-clay transition-colors " + (isActive ? "text-clay" : "text-ink");
+            const linkClass = "uppercase relative pb-1 hover:text-clay transition-colors " + (isActive ? "text-clay" : "text-ink dark:text-cream");
             return (
               <li key={l.href}>
                 <a href={l.href} className={linkClass}>
@@ -60,25 +63,32 @@ export default function Nav() {
           })}
         </ul>
 
-        <button className="md:hidden w-10 h-10 rounded-full bg-clay text-cream flex items-center justify-center" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
-          <span className="sr-only">Menu</span>
-          {open ? (
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M2 2 L14 14 M14 2 L2 14" />
-            </svg>
-          ) : (
-            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M0 1 H18 M0 6 H18 M0 11 H18" />
-            </svg>
-          )}
-        </button>
+        <div className="hidden md:block">
+          <ThemeToggle />
+        </div>
+
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button className="w-10 h-10 rounded-full bg-clay text-cream flex items-center justify-center" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+            <span className="sr-only">Menu</span>
+            {open ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M2 2 L14 14 M14 2 L2 14" />
+              </svg>
+            ) : (
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M0 1 H18 M0 6 H18 M0 11 H18" />
+              </svg>
+            )}
+          </button>
+        </div>
       </nav>
 
       {open && (
-        <ul className="md:hidden flex flex-col gap-1 px-6 pb-6 bg-cream border-b border-ink/10">
+        <ul className="md:hidden flex flex-col gap-1 px-6 pb-6 bg-cream dark:bg-night border-b border-ink/10 dark:border-cream/10">
           {LINKS.map((l) => (
             <li key={l.href}>
-              <a href={l.href} onClick={() => setOpen(false)} className="block py-3 uppercase text-sm tracking-wide text-ink hover:text-clay">
+              <a href={l.href} onClick={() => setOpen(false)} className="block py-3 uppercase text-sm tracking-wide text-ink dark:text-cream hover:text-clay">
                 {l.label}
               </a>
             </li>
