@@ -24,7 +24,7 @@ export default function Contact() {
 
         {/* Contact card */}
         <div className="relative bg-card dark:bg-nightSurface border border-ink/10 dark:border-cream/10 rounded-sm shadow-pin px-8 sm:px-10 py-10">
-          <h2 className="font-display text-2xl font-semibold text-clay">{t.contact.heading}</h2>
+          <h2 className="font-display text-2xl font-semibold text-clay pr-16 rtl:pr-0 rtl:pl-16">{t.contact.heading}</h2>
 
           <ul className="mt-6 space-y-4 text-[13px]">
             <li className="flex items-center gap-3">
@@ -45,7 +45,7 @@ export default function Contact() {
             </li>
           </ul>
 
-          <SmileyStamp className="w-16 h-16 absolute top-8 right-8" />
+          <SmileyStamp className="w-16 h-16 absolute top-8 right-8 rtl:right-auto rtl:left-8" />
 
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
             <a href="mailto:abdelhakim.rebbouh@univ-constantine2.dz" className="flex-1 flex items-center justify-between bg-ink text-cream text-xs uppercase tracking-wide font-bold px-5 py-4 rounded-sm hover:bg-clay transition-colors">
